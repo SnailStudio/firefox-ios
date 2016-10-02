@@ -265,7 +265,10 @@ private func toggleWebViewVisibility(show show: Bool, usingTabManager tabManager
 
 private func resetTransformsForViews(views: [UIView?]) {
     for view in views {
-        // Reset back to origin
+        // Only Reset back to origin views that are on the screen.
+        guard view?.superview != nil else {
+            return
+        }
         view?.transform = CGAffineTransformIdentity
     }
 }
